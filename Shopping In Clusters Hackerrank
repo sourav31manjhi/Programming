@@ -1,0 +1,45 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+     
+    long int n,p;
+    cin>>n>>p;
+    vector<long int> a(n);
+    long int temp;
+    for(long int i=0;i<n;i++){
+        cin>>temp;
+        a[i]=temp;;
+       // cout<<a[i];
+    }
+    sort(a.begin(),a.end());
+    
+    vector<long int> buttons;
+    for(long int i=0;i<n;i++){
+        temp=(long int)(ceil((double)a[i]/(double)p));
+       // cout<<temp;
+        std::vector<long int>::iterator it;
+        it = std::find (buttons.begin(), buttons.end(), temp);
+        if(it!=buttons.end()){
+            buttons.push_back(buttons[i-1]+1 );
+        }
+        else
+        {
+            buttons.push_back(temp);
+        }
+    }
+    long int sum=0;
+    long int s=buttons.size();
+    for(long int j=0;j<s;j++){
+        //cout<<buttons[j];
+        sum+=buttons[j];
+    }
+    cout<<sum;
+    
+    return 0;
+}
